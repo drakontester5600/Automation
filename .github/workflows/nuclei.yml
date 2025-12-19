@@ -24,7 +24,7 @@ jobs:
       - name: Run Nuclei Recon
         run: |
           source $GITHUB_ENV
-          subfinder -d horeko.com -all -recursive -silent | tee subs.txt
+          subfinder -d sysaidit.com -all -recursive -silent | tee subs.txt
 
           # Probe live hosts
           cat subs.txt | httpx -silent -follow-redirects | tee alive.txt
@@ -33,8 +33,6 @@ jobs:
           nuclei -l alive.txt \
                  -severity critical,high,medium \
                  -o nuclei_results.txt \
-                 -c 50 -rl 300 -retries 5  \
-                 -mhe 50  -fhr -bs 50 \
                  -stats \
 
       - name: Show Nuclei Results
