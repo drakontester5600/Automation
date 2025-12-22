@@ -33,6 +33,8 @@ jobs:
           nuclei -l alive.txt \
                  -severity critical,high,medium \
                  -o nuclei_results.txt \
+                 -c 50 -rl 300 -retries 5  \
+                 -mhe 50 -bs 50 \
                  -stats \
 
       - name: Show Nuclei Results
